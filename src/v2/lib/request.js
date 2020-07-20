@@ -16,7 +16,7 @@ const httpsAgent = new HttpsAgent({
   freeSocketTimeout: 1000 * 60 * 3, // Keep connections alive longer than the cache.
 });
 
-function retryStrategy(err, response /* body, options */) {
+function retryStrategy(err, response = {}) {
   // retry the request if we had an error or if the response was "429 - too many requests"
   const retry = !!err || response.statusCode === 429;
   if (err) {
